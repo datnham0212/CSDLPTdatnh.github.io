@@ -45,22 +45,10 @@
      }
     }
        function bhej(){
-    if (window.ethereum) {
-        window.ethereum.enable().then(function(accounts){
-            var addres = window.ethereum.selectedAddress; // Get the currently selected account
-            if (addres) {
-                localStorage.setItem("myaddress", addres);
-                window.location.replace('account.html');
-            } else {
-                console.log("No account selected in MetaMask.");
-            }
-        }).catch(function(error){
-            console.log("Error connecting to MetaMask:", error);
-        });
-    } else {
-        console.log("Non-Ethereum browser detected. You should consider trying MetaMask!");
-    }
-}
+            var addres=document.getElementById("address").value;
+            localStorage.setItem("myaddress",addres);
+         window.location.replace('account.html');
+        }
     </script>
     </div>
     </body>
