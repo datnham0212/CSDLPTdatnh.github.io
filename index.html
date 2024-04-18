@@ -39,7 +39,7 @@
     <script>
       var myaccount=localStorage.getItem("myaddress");
       window.onload=function(){
-     //console.log(myaccount);
+     console.log(myaccount);
      if(myaccount!=null){
       window.location.replace('account.html');
      }
@@ -48,7 +48,6 @@
     if (window.ethereum) {
         window.ethereum.enable().then(function(accounts){
             var addres = window.ethereum.selectedAddress; // Get the currently selected account
-            console.log(addres);
             if (addres) {
                 localStorage.setItem("myaddress", addres);
                 window.location.replace('account.html');
