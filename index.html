@@ -45,27 +45,22 @@
      }
     }
        function bhej(){
-        if (window.ethereum) {
-            window.ethereum.enable().then(function(accounts){
-                // Let the user select an account if they have more than one
-                var addres = accounts[0]; // Default to the first account
-                if (accounts.length > 1) {
-                    var accountIndex = prompt("You have multiple accounts. Please enter the index of the account you want to use (starting from 0):");
-                    if (accountIndex >= 0 && accountIndex < accounts.length) {
-                        addres = accounts[accountIndex];
-                    } else {
-                        alert("Invalid account index. Defaulting to the first account.");
-                    }
-                }
+    if (window.ethereum) {
+        window.ethereum.enable().then(function(accounts){
+            var addres = window.ethereum.selectedAddress; // Get the currently selected account
+            if (addres) {
                 localStorage.setItem("myaddress", addres);
                 window.location.replace('account.html');
-            }).catch(function(error){
-                console.log("Error connecting to MetaMask:", error);
-            });
-        } else {
-            console.log("Non-Ethereum browser detected. You should consider trying MetaMask!");
-        }
+            } else {
+                console.log("No account selected in MetaMask.");
+            }
+        }).catch(function(error){
+            console.log("Error connecting to MetaMask:", error);
+        });
+    } else {
+        console.log("Non-Ethereum browser detected. You should consider trying MetaMask!");
     }
+}
     </script>
     </div>
     </body>
