@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralized Test</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  </head>
+<body>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <link href="https://fonts.googleapis.com/css?family=Nunito:600,700,900" rel="stylesheet">
+
+ <!-- <p>Check first if MetaMask is installed: <a href="#!" onclick="web3_check_metamask();">Detect MetaMask</a></p>
+ <p>Initate the Login process: <a href="#!" onclick="web3_metamask_login();">Login with MetaMask</a></p> -->
+
+<body id="body">
+
+        <div id="login-card" class="card">
+            <div class="card-body">
+                <h2 class="text-center">Login form</h2>
+                <br>
+
+                <!-- <div class="form-group">
+                        <input type="text" class="form-control" id="address" placeholder="Enter address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" name="pswd">
+                    </div> -->
+                <button type="button" onclick="web3_metamask_login()" id="button"
+                    class="btn btn-primary deep-purple btn-block ">Submit</button>
+                <br>
+                <br>
+
+            </div>
+            <div>
+                <script src="https://cdn.ethers.io/lib/ethers-5.6.4.umd.min.js" type="application/javascript"></script>
+                <script>
+                    // Function này dùng để kiểm tra có đã có MetaMask hay chưa
+                    function web3_check_metamask() {
+                    if (!window.ethereum) {
+                    console.error('It seems that the MetaMask extension is not detected. Please install MetaMask first.');
+                    alert('It seems that the MetaMask extension is not detected. Please install MetaMask first.');
+                    return false;
+                    } else {
+                    console.log('MetaMask extension has been detected!!');
+                    return true;
+                    }
+                    }
+
+                    // Function này dùng để tạo một đối tượng web3 để truy cập vào giao diện của MetaMask
+                    function web3_metamask_hash() {
+                    var hashed_string = '';
+                    var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+                    var total_chars = chars.length;
+                    for (var i = 0; i < 256; i++) {
+                    hashed_string += chars.charAt(Math.floor(Math.random() * total_chars));
+                    }
+                    return hashed_string;
+                    }
+                    
+                    // Function này dùng để login vào trang web bằng MetaMask
+                    async function web3_metamask_login() {
+                    // Check first if the user has the MetaMask installed
+                    if (web3_check_metamask()) {
+                    console.log('Initiate Login Process');
+
+                    // Get the Ethereum provider
+                    const provider = new ethers.providers.Web3Provider(window.ethereum);
+                    // Get Ethereum accounts
+                    await provider.send("eth_requestAccounts", []);
+                    console.log("Connected!!");
+                    // Get the User Ethereum address
+                    const address = await provider.getSigner().getAddress();
+                    console.log(address);
+
+                    // Create hashed string
+                    const hashed_string = web3_metamask_hash();
+                    console.log("Hashed string: " + hashed_string);
+                    // Request the user to sign it
+                    const signature = await provider.getSigner().signMessage(hashed_string);
+                    // Got the signature
+                    console.log("The signature: " + signature);
+
+
+                    localStorage.setItem("myaddress", address);
+
+                    // Added redirect inside web3_metamask_login function
+                    window.location.replace('account.html');
+                    }
+                    }
+
+                    </script>
+                </div>
+    </div>
+    </body>
+  </body>
+</html>
