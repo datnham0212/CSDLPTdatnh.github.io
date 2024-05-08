@@ -58,10 +58,8 @@ let abi= [
 ];
   let contractAddress='0xbC03406F992c6E8959DcEEC25e561790cf227F02';
 
-
 // onstart
 window.onload=function(){
-//console.log(myaccount);
 if(myaccount==null){
 window.location.replace('index.html');
 }
@@ -73,7 +71,8 @@ function back()
 {
 localStorage.removeItem("myaddress");
 window.location.replace('index.html');
-}
+}// Trở về trang login
+
 function addMessages(a) {
 var id = "messagepart" + a.id;
 
@@ -115,11 +114,10 @@ mycontract.getPastEvents('message', {
   '</button>' +
 '</div>'
 });
-};
+};// Thêm tin nhắn vào inbox
 
 
 function onSend(det){
-//console.log("Press zala send by:"+det.id);
 var message=document.getElementById("input"+det.id).value;
 var to=det.id.split('on')[1];
 let web3=new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
@@ -158,8 +156,7 @@ mycontract.methods.sendMessage(to,message,accurateTime).send({from:myaccount},fu
   }
 });
 //      console.log('From:'+myaccount+' message: '+message+' To: '+to);
-}
-
+}// Gửi tin nhắn tới người khác
 
 
 function add() {
@@ -188,5 +185,5 @@ console.log("Retrieved accounts:", accounts);
 });
 
 
-}
+}// Thêm người dùng vào inbox
   
